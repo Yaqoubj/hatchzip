@@ -29,10 +29,13 @@ const RELEASES: &str = "https://github.com/xevrion/hatchzip/releases/latest";
 /// RAR set; any volume opens the whole set.
 const ARCHIVE_EXTENSIONS: &[&str] = if hatchzip_core::archive::RAR_SUPPORTED {
     &[
-        "zip", "7z", "tar", "gz", "tgz", "xz", "txz", "rar", "r00", "exe", "001",
+        "zip", "7z", "tar", "gz", "tgz", "bz2", "tbz2", "tbz", "xz", "txz", "rar", "r00", "exe",
+        "001",
     ]
 } else {
-    &["zip", "7z", "tar", "gz", "tgz", "xz", "txz", "exe", "001"]
+    &[
+        "zip", "7z", "tar", "gz", "tgz", "bz2", "tbz2", "tbz", "xz", "txz", "exe", "001",
+    ]
 };
 
 /// The Linux file choosers match a filter case-sensitively, so `GAME.RAR`
@@ -46,11 +49,11 @@ fn picker_extensions() -> Vec<String> {
 
 /// The formats line under the Open button.
 const FORMATS: &str = if hatchzip_core::archive::RAR_SUPPORTED {
-    "Or drag an archive onto this window. Supported formats: ZIP, 7z, tar, tar.gz, tar.xz, RAR, \
-     and split archives."
+    "Or drag an archive onto this window. Supported formats: ZIP, 7z, tar, tar.gz, tar.bz2, tar.xz, \
+     RAR, and split archives."
 } else {
-    "Or drag an archive onto this window. Supported formats: ZIP, 7z, tar, tar.gz, tar.xz, and \
-     split archives."
+    "Or drag an archive onto this window. Supported formats: ZIP, 7z, tar, tar.gz, tar.bz2, tar.xz, \
+     and split archives."
 };
 
 /// An archive opened read-only for looking at. It takes no lock, so another
